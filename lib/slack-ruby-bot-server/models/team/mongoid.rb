@@ -13,6 +13,7 @@ class Team
   field :activated_user_id, type: String
   field :activated_user_access_token, type: String
   field :challenge_code, type: String
+  field :movr_channel, type: String
 
   include Methods
 
