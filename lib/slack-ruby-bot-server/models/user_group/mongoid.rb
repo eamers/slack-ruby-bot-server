@@ -1,4 +1,3 @@
-require_relative 'methods'
 
 class UserGroup 
   include Mongoid::Document
@@ -8,5 +7,4 @@ class UserGroup
   field :channel_id, type: String
   field :code, type: String
 
-  include Methods
 end
