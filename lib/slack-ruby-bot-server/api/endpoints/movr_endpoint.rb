@@ -13,7 +13,7 @@ module SlackRubyBotServer
           requires :workout_name, type: String, desc: 'Workout Name'
         end
         get do
-          user_group = UserGroup.where(challenge_code: params[:challenge_code]).first
+          user_group = UserGroup.where(code: params[:challenge_code]).first
           team = Team.where(team_id: user_group.team_id)
           token = team.activated_user_access_token
           token = team.token
