@@ -14,7 +14,7 @@ module SlackRubyBotServer
         end
         get do
           user_group = UserGroup.where(code: params[:challenge_code]).first
-          team = Team.where(team_id: user_group.team_id)
+          team = Team.where(team_id: user_group.team_id).first
           token = team.activated_user_access_token
           token = team.token
           client = Slack::Web::Client.new(token: token)
