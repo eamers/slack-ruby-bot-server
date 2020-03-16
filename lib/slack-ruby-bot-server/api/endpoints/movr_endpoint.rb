@@ -13,12 +13,13 @@ module SlackRubyBotServer
           requires :workout_name, type: String, desc: 'Workout Name'
         end
         get do
-          team = Team.where(challenge_code: params[:challenge_code]).first
+          user_group = UserGroup.where(challenge_code: params[:challenge_code]).first
+          team = Team.where(team_id: user_group.team_id)
           token = team.activated_user_access_token
           token = team.token
           client = Slack::Web::Client.new(token: token)
           #result = client.users_conversations(user: "U0Q5725HC")
-          client.chat_postMessage(channel: team.movr_channel, text: "#{params[:name]} just completed #{params[:workout_name]}!!")
+          client.chat_postMessage(channel: user_group.channel_id, text: "#{params[:name]} just completed #{params[:workout_name]}!!")
           /
           list = client.conversations_list.inspect
           puts client.bots_info.inspect
