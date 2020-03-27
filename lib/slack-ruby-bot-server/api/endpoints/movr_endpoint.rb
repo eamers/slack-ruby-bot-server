@@ -19,7 +19,7 @@ module SlackRubyBotServer
           token = team.token
           client = Slack::Web::Client.new(token: token)
           #result = client.users_conversations(user: "U0Q5725HC")
-          client.chat_postMessage(channel: user_group.channel_id, text: "#{params[:name]} just completed #{params[:workout_name]}!!")
+          client.chat_postMessage(channel: user_group.channel_id, thread_ts: user_group.thread_ts, text: "#{params[:name]} just completed #{params[:workout_name]}!!")
           /
           list = client.conversations_list.inspect
           puts client.bots_info.inspect
